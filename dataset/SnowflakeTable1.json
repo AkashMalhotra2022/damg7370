@@ -7,6 +7,10 @@
 		},
 		"annotations": [],
 		"type": "SnowflakeV2Table",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "STAGE",
+			"table": "SEATTLE_PET_LIC_STG"
+		}
 	}
 }
