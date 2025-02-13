@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "damg7370adf2025"
 		},
-		"Snowflake_demo_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Snowflake_demo'"
-		},
 		"STG_AzureDataLakeStorage_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'STG_AzureDataLakeStorage'"
+		},
+		"Snowflake_demo_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake_demo'"
 		},
 		"AzureDataLakeStorage_LS_properties_typeProperties_url": {
 			"type": "string",
@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'sasUri' of 'LS_Stg_AzureBlobStorage'"
 		},
+		"STG_AzureDataLakeStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://damg7370springstg.dfs.core.windows.net/"
+		},
 		"Snowflake_demo_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "TEMP_DB"
@@ -34,10 +38,6 @@
 		"Snowflake_demo_properties_typeProperties_role": {
 			"type": "string",
 			"defaultValue": "DAMG_ROLE"
-		},
-		"STG_AzureDataLakeStorage_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://damg7370springstg.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -66,11 +66,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Snowflake_demo_password": {
-						"value": "[parameters('Snowflake_demo_password')]"
-					},
 					"STG_AzureDataLakeStorage_accountKey": {
 						"value": "[parameters('STG_AzureDataLakeStorage_accountKey')]"
+					},
+					"Snowflake_demo_password": {
+						"value": "[parameters('Snowflake_demo_password')]"
 					},
 					"AzureDataLakeStorage_LS_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_LS_properties_typeProperties_url')]"
@@ -81,14 +81,14 @@
 					"LS_Stg_AzureBlobStorage_sasUri": {
 						"value": "[parameters('LS_Stg_AzureBlobStorage_sasUri')]"
 					},
+					"STG_AzureDataLakeStorage_properties_typeProperties_url": {
+						"value": "[parameters('STG_AzureDataLakeStorage_properties_typeProperties_url')]"
+					},
 					"Snowflake_demo_properties_typeProperties_database": {
 						"value": "[parameters('Snowflake_demo_properties_typeProperties_database')]"
 					},
 					"Snowflake_demo_properties_typeProperties_role": {
 						"value": "[parameters('Snowflake_demo_properties_typeProperties_role')]"
-					},
-					"STG_AzureDataLakeStorage_properties_typeProperties_url": {
-						"value": "[parameters('STG_AzureDataLakeStorage_properties_typeProperties_url')]"
 					}
 				}
 			},

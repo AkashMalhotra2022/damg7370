@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "damg7370adf2025"
 		},
-		"Snowflake_demo_password": {
+		"STG_AzureDataLakeStorage_accountKey": {
 			"value": ""
 		},
-		"STG_AzureDataLakeStorage_accountKey": {
+		"Snowflake_demo_password": {
 			"value": ""
 		},
 		"AzureDataLakeStorage_LS_properties_typeProperties_url": {
@@ -20,14 +20,14 @@
 		"LS_Stg_AzureBlobStorage_sasUri": {
 			"value": ""
 		},
+		"STG_AzureDataLakeStorage_properties_typeProperties_url": {
+			"value": "https://damg7370springstg.dfs.core.windows.net/"
+		},
 		"Snowflake_demo_properties_typeProperties_database": {
 			"value": "TEMP_DB"
 		},
 		"Snowflake_demo_properties_typeProperties_role": {
 			"value": "DAMG_ROLE"
-		},
-		"STG_AzureDataLakeStorage_properties_typeProperties_url": {
-			"value": "https://damg7370springstg.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""
