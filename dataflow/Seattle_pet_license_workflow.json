@@ -95,7 +95,7 @@
 				"          LICENSE_NUMBER,",
 				"          ANIMAL_NAME,",
 				"          SPECIES,",
-				"          PRIMARY_BREED = {Primary Breed},",
+				"          PRIMARY_BREED,",
 				"          SECONDARY_BREED,",
 				"          ZIP_CODE,",
 				"          DI_JOB_ID,",
