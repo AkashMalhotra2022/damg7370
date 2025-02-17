@@ -159,7 +159,7 @@
 				"     broadcast: 'auto')~> joinMaxFctId",
 				"joinMaxFctId select(mapColumn(",
 				"          DI_JOB_ID = sourceLocationDim@DI_JOB_ID,",
-				"          DI_LOAD_DT = sourceStg@DI_LOAD_DT,",
+				"          DI_LOAD_DT = sourceLocationDim@DI_LOAD_DT,",
 				"          LOCATION_SK,",
 				"          BREED_SK,",
 				"          DATE_DIM_SK,",
