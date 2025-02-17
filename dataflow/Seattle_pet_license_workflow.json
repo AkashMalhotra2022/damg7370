@@ -58,7 +58,7 @@
 				"TransposeColumns select(mapColumn(",
 				"          LICENSE_ISSUE_DATE = TransposeColumns@LICENSE_ISSUE_DATE,",
 				"          SECONDARY_BREED = TransposeColumns@SECONDARY_BREED,",
-				"          PRIMARY_BREED = {Primary Breed},",
+				"          PRIMARY_BREED = Primary_Breed,",
 				"          ZIP_CODE = TransposeColumns@ZIP_CODE,",
 				"          LICENSE_NUMBER = TransposeColumns@LICENSE_NUMBER,",
 				"          ANIMAL_NAME,",
