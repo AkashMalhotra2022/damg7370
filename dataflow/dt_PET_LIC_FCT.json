@@ -148,7 +148,7 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> joinLocationDim",
-				"joinLocationDim, sourceBreedDim join(PRIMARY_BREED == PRIMARY_BREED_NAME",
+				"sourceLocationDim, sourceBreedDim join(PRIMARY_BREED == PRIMARY_BREED_NAME",
 				"     && SECONDARY_BREED == SECONDARY_BREED_NAME",
 				"     && SPECIES == SPECIES_NAME,",
 				"     joinType:'left',",
