@@ -1,0 +1,106 @@
+{
+	"name": "Seattle_pet_license_workflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Seattle_pet_license_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "readTSVFile",
+					"description": "Import DatasetTsv_Delimeter"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Seattle_pet_licenese_Stage",
+						"type": "DatasetReference"
+					},
+					"name": "CleanedData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "TransposeColumns"
+				},
+				{
+					"name": "PickedRequiredColumns"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     Job_Id as string",
+				"}",
+				"source(output(",
+				"          License_Issue_Date as string,",
+				"          License_Number as string,",
+				"          Animals_Name as string,",
+				"          Species as string,",
+				"          Primary_Breed as string,",
+				"          Secondary_Breed as string,",
+				"          ZIP_Code as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> readTSVFile",
+				"readTSVFile derive(LICENSE_ISSUE_DATE = toDate({License_Issue_Date}, 'MMMM dd yyyy'),",
+				"          SECONDARY_BREED = iifNull({Secondary_Breed}, 'Unknown'),",
+				"          ZIP_CODE = lpad(toString({ZIP_Code}),5,'0'),",
+				"          SPECIES = upper(Species),",
+				"          LICENSE_NUMBER = toInteger(translate({License_Number},'S','')),",
+				"          ANIMAL_NAME = translate({Animals_Name},'()',''),",
+				"          DI_JOB_ID = $Job_Id,",
+				"          DI_LOAD_DT = currentDate()) ~> TransposeColumns",
+				"TransposeColumns select(mapColumn(",
+				"          LICENSE_ISSUE_DATE = TransposeColumns@LICENSE_ISSUE_DATE,",
+				"          SECONDARY_BREED = TransposeColumns@SECONDARY_BREED,",
+				"          PRIMARY_BREED = Primary_Breed,",
+				"          ZIP_CODE = TransposeColumns@ZIP_CODE,",
+				"          LICENSE_NUMBER = TransposeColumns@LICENSE_NUMBER,",
+				"          ANIMAL_NAME,",
+				"          SPECIES = TransposeColumns@SPECIES,",
+				"          DI_JOB_ID,",
+				"          DI_LOAD_DT",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> PickedRequiredColumns",
+				"PickedRequiredColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          LICENSE_ISSUE_DATE as string,",
+				"          LICENSE_NUMBER as string,",
+				"          ANIMAL_NAME as string,",
+				"          SPECIES as string,",
+				"          PRIMARY_BREED as string,",
+				"          SECONDARY_BREED as string,",
+				"          ZIP_CODE as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_LOAD_DT as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          LICENSE_ISSUE_DATE,",
+				"          LICENSE_NUMBER,",
+				"          ANIMAL_NAME,",
+				"          SPECIES,",
+				"          PRIMARY_BREED,",
+				"          SECONDARY_BREED,",
+				"          ZIP_CODE,",
+				"          DI_JOB_ID,",
+				"          DI_LOAD_DT",
+				"     )) ~> CleanedData"
+			]
+		}
+	}
+}

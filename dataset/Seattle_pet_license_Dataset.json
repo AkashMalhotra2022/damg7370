@@ -1,25 +1,17 @@
 {
-	"name": "DelimitedText2",
+	"name": "Seattle_pet_license_Dataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "STG_AzureDataLakeStorage",
+			"referenceName": "AzureDataLakeStorage_LS",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"FileName": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileName",
-					"type": "Expression"
-				},
-				"fileSystem": "staggingsnowflake"
+				"fileName": "Seattle_Pet_Licenses_new.tsv",
+				"fileSystem": "bronze"
 			},
 			"columnDelimiter": "\t",
 			"escapeChar": "\\",
