@@ -20,6 +20,18 @@
 						"type": "DatasetReference"
 					},
 					"name": "CleanedData"
+				},
+				{
+					"dataset": {
+						"referenceName": "SeattlePetLiceneceParquet",
+						"type": "DatasetReference"
+					},
+					"name": "CleanedDataToParquet",
+					"description": "Loading Data to Silver",
+					"rejectedDataLinkedService": {
+						"referenceName": "STG_AzureDataLakeStorage",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -99,7 +111,24 @@
 				"          ZIP_CODE,",
 				"          DI_JOB_ID,",
 				"          DI_LOAD_DT",
-				"     )) ~> CleanedData"
+				"     )) ~> CleanedData",
+				"PickedRequiredColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          License_Issue_Date as string,",
+				"          License_Number as string,",
+				"          Animals_Name as string,",
+				"          Species as string,",
+				"          Primary_Breed as string,",
+				"          Secondary_Breed as string,",
+				"          ZIP_Code as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CleanedDataToParquet"
 			]
 		}
 	}
